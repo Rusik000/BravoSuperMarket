@@ -1,0 +1,203 @@
+﻿<Window x:Class="WpfAppSHOPkop.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfAppSHOPkop"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:fw ="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
+        fw:AcrylicWindow.Enabled="True"
+        fw:AcrylicWindow.NoiseOpacity="0"
+        fw:AcrylicWindow.AcrylicAccentState="TransparentGradient"
+        Title="Shop" 
+        Height="630" 
+        Width="1024"
+        WindowStartupLocation="CenterScreen"
+        MouseDown="Window_MouseDown"
+     TextElement.FontWeight="Regular"
+     TextElement.FontSize="12"
+     TextOptions.TextFormattingMode="Ideal"
+     TextOptions.TextRenderingMode="Auto"
+     FontFamily="{DynamicResource MaterialDesignFont}" Icon="Bravo.JPG" MaxWidth="1024" MaxHeight="630" ResizeMode="NoResize">
+
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="10*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="8*" />
+        </Grid.RowDefinitions>
+  
+        <WrapPanel 
+            Name="wr"
+            Background="{fw:AcrylicBrush}"
+            ></WrapPanel>
+
+        <Image Source="Bravo.JPG" Width="Auto" Height="Auto" Stretch="Fill" ToolTip="Bravo SuperMarket" >
+            
+        </Image>
+        <WrapPanel
+             Grid.Row="1"
+             Grid.Column="1"
+            Background="DarkGray" 
+            Name="myStackPanel">
+            <ListBox
+                Background="White"
+               x:Name="ListBoxProducts"
+                ItemsSource="{Binding Products}"
+                >
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+
+
+                <ListBox.ItemTemplate>  
+                    <DataTemplate>
+                        <WrapPanel 
+                            x:Name="pp"
+                            Orientation="Horizontal"
+                             Background="Blue">
+
+                            <StackPanel   Orientation="Horizontal">
+                                <Grid
+                                
+                                HorizontalAlignment="Center"
+                                x:Name="myGrid">
+                                    
+                                    <Rectangle Fill="DarkGray" HorizontalAlignment="Left" Height="320" Margin="10,10,0,0"
+                                       Stroke="DarkGray" VerticalAlignment="Top" Width="180"/>
+                                    
+                                    <Border
+                            CornerRadius="11"
+                                Width="160"
+                                Height="320"
+                                Margin="20,30,0,0"
+                                    Background="White"
+                                HorizontalAlignment="Left"
+                                 VerticalAlignment="Top"
+                                        
+                                    
+                            >
+                                        
+                                        <StackPanel Margin="15"  Background="White" Orientation="Vertical">
+                                            <StackPanel.ContextMenu>
+                                                <ContextMenu>
+                                                    <MenuItem Header="Edit" Click="ButtonAdd_OnClick">
+                                                    </MenuItem>
+                                                    <MenuItem Header="Delete" Click="MenuItem_Click_1"  >
+                                                    </MenuItem>
+                                                </ContextMenu>
+                                            </StackPanel.ContextMenu>
+                                            <WrapPanel>
+                                            <materialDesign:PackIcon Kind="FileEdit" 
+                                 MouseDoubleClick="ButtonAdd_OnClick"
+                                ToolTip="--EDIT--Double Click for editing (it is for preventing by chance clicks)"
+                                 FontSize="20" Width="22" 
+                                                                    
+                                 Height="20" Margin="0" RenderTransformOrigin="14.733,-7.2" >
+                                                <materialDesign:PackIcon.Foreground>
+                                                    <LinearGradientBrush>
+                                                        <GradientStop Color="DarkGray" Offset="0"/>
+                                                        <GradientStop Color="Blue" Offset="0.2"/>
+                                                        <GradientStop Color="DarkGray" Offset="0.3"/>
+                                                        <GradientStop Color="Green" Offset="0.4"/>
+                                                        <GradientStop Color="DarkGray" Offset="0.5"/>
+                                                        <GradientStop Color="LightBlue" Offset="1"/>
+                                                    </LinearGradientBrush>
+                                                </materialDesign:PackIcon.Foreground>
+                                            </materialDesign:PackIcon>  
+                                            <materialDesign:PackIcon Kind="Delete" 
+                                 MouseDoubleClick="PackIcon_MouseDoubleClick"
+                                ToolTip="--DELETE--Double Click for editing (it is for preventing by chance clicks)"
+                                 FontSize="20" Width="22" 
+                                 Height="20" Margin="0,0,0,0" RenderTransformOrigin="14.733,-7.2" >
+                                                <materialDesign:PackIcon.Foreground>
+                                                    <LinearGradientBrush>
+                                                        <GradientStop Color="DarkGray" Offset="0"/>
+                                                        <GradientStop Color="DarkRed" Offset="0.2"/>
+                                                        <GradientStop Color="DarkGray" Offset="0.3"/>
+                                                        <GradientStop Color="Blue" Offset="0.4"/>
+                                                        <GradientStop Color="DarkGray" Offset="0.5"/>
+                                                        <GradientStop Color="LightBlue" Offset="1"/>
+                                                    </LinearGradientBrush>
+                                                </materialDesign:PackIcon.Foreground>
+                                            </materialDesign:PackIcon>
+                                            </WrapPanel>
+                                            <Image   Width="90" Margin="10"  Source="{Binding ImagePath}" ></Image>
+                                            <TextBlock Width="80" Margin="10"
+                                                   FontWeight="ExtraBold" FontSize="15" 
+                                                   
+                                                       ToolTip="{Binding Name}"
+                                                   Text="{Binding Name}" ></TextBlock>
+                                            <Grid>
+                                                <TextBlock Width="80" Margin="10" FontSize="15" Text="Price" ></TextBlock>
+                                                <TextBlock Width="80" Margin="70,10,0,0" FontSize="15"  
+                                                           ToolTip="{Binding Price}" 
+                                                           Text="{Binding Price}" ></TextBlock>
+                                            </Grid>
+                                        </StackPanel>
+
+                                    </Border>
+
+                                    <Label  Width="80" Height="80" Margin="130,300,0,0" >
+                                        <Label.Template>
+                                            <ControlTemplate>
+                                                <Grid>
+                                                    <Ellipse Stroke="Transparent" Fill="DarkGray"  Width="80" StrokeThickness="1"/>
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Label.Template>
+                                    </Label>
+                                    <Button Click="Button_Click"  Content="+" FontSize="30"
+                                            ToolTip="Buy"
+                                            Foreground="Black" Width="60" Height="60" Margin="130,300,0,0" >
+                                        <Button.Template>
+                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                <Grid>
+                                                    <Ellipse Stroke="Transparent" Fill="White"  Width="60" StrokeThickness="1"/>
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                    </Button>
+                                </Grid>
+                            </StackPanel>
+                        </WrapPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            
+        </WrapPanel>
+        
+        
+        
+        
+        
+        
+        <Border Grid.Column="1"
+                Grid.Row="0"
+                    BorderThickness="2"
+                    BorderBrush="#6CA9DA"
+                    Margin="15,10,286,10"
+                    CornerRadius="13"
+               
+                    Padding="5">
+            <TextBox x:Name="TextBoxSearch"
+                         BorderThickness="0"
+                         Background="Transparent"
+                     FontSize="22"
+                     Foreground="#6CA9DA"
+                    ToolTip="SEARCH"
+                         TextChanged="TextBoxSearch_OnTextChanged" Margin="3,0,3,3"/>
+        </Border>
+        
+    </Grid>
+</Window>

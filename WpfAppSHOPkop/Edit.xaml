@@ -1,0 +1,101 @@
+﻿<Window x:Class="WpfAppSHOPkop.Edit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:WpfAppSHOPkop"
+        mc:Ignorable="d"
+        Title="Edit" Height="640" Width="800" Closing="Window_Closing" >
+    <Grid>
+
+        <Grid>
+            <Border Margin="10, 5, 10, 10"
+                        BorderThickness="1.5"
+                        BorderBrush="LightGray">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="3.5*"/>
+                        <RowDefinition Height="2*"/>
+                        
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Row="0"
+                                BorderThickness="1.5"
+                                Margin="10"
+                                BorderBrush="LightGray"
+                                Background="AliceBlue"
+                              >
+                    
+
+                            <Image x:Name="EditProductImage"
+                                  Source="{Binding Produ.ImagePath, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                        AllowDrop="True" Drop="EditProductImage_Drop" DragEnter="EditProductImage_DragEnter">
+
+
+                              
+                            </Image>
+
+
+                     
+                    </Border>
+
+                    <StackPanel Grid.Row="1">
+                        <TextBox x:Name="PathTextbox"
+                                 TextWrapping="Wrap" 
+                                 ToolTip="DRAG AND DROP PNG OR JPG FILE FOR ADDING IMAGE"
+                                 Text="Path"
+                                 Margin="5,10,0,0"
+                                 IsReadOnly="True" 
+                                 Focusable="True"
+                                 Visibility="Visible" />
+                        <TextBlock FontSize="16"
+                                       FontWeight="SemiBold"
+                                       Text="Name"
+                                       Margin="10, 0, 0, 0"></TextBlock>
+                        <TextBox x:Name="TextBoxProductName"
+                                     Margin="10, 10, 10, 0"
+                                     Height="30"
+                                     Text="{Binding Produ.Name,UpdateSourceTrigger=PropertyChanged}"
+                                     FontSize="17"
+                                     VerticalContentAlignment="Center"
+                                     Padding="5, 0, 5, 0"/>
+                        <TextBlock FontSize="16"
+                                       FontWeight="SemiBold"
+                                       Text="Quantity"
+                                       Margin="10, 10, 0, 0"/>
+                        <TextBox x:Name="TextBoxProductQuantity"
+                                     Margin="10, 10, 10, 0"
+                                     Height="30"
+                                     Text="{Binding Produ.Quantity,UpdateSourceTrigger=PropertyChanged}"
+                                     FontSize="17"
+                                     VerticalContentAlignment="Center"
+                                     Padding="5, 0, 5, 0"/>
+                        <TextBlock FontSize="16"
+                                       FontWeight="SemiBold"
+                                       Text="Price"
+                                       Margin="10, 10, 0, 0"/>
+                        <TextBox x:Name="TextBoxProductPrice"
+                                     Margin="10, 10, 10, 0"
+                                     Height="30"
+                                     Text="{Binding Produ.Price,UpdateSourceTrigger=PropertyChanged}"
+                                     FontSize="17"
+                                     VerticalContentAlignment="Center"
+                                     Padding="5, 0, 5, 0"/>
+                    </StackPanel>
+
+                    <Grid Grid.Row="2" >
+                        <Image Source="Bravo.jpg" Stretch="Fill"  Width="400">
+                            
+                        </Image>
+
+                    </Grid>
+
+
+
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>
